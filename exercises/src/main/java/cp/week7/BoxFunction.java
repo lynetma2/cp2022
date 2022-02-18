@@ -3,6 +3,6 @@ package cp.week7;
 
 public interface BoxFunction<I, O> {
     
-    //Method desclaration/description.
+    //Method declaration/description.
     public O apply(I input);
 }
