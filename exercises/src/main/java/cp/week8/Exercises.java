@@ -5,7 +5,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.stream.*;
 import java.util.*;
-import java.util.function.IntPredicate;
 
 public class Exercises{
 
