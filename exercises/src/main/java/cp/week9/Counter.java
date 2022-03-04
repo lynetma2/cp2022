@@ -8,15 +8,15 @@ public class Counter {
         this.i = i;
     }
 
-    public synchronized int i(){
+    public int i(){
         return i;
     }
 
     public synchronized void increment(){
-        i = i++;
+        i++;
     }
 
     public synchronized void decrement(){
-        i = i--;
+        i--;
     }
 }

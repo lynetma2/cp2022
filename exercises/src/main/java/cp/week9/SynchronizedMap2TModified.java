@@ -18,19 +18,18 @@ public class SynchronizedMap2TModified {
 			countLetters( Paths.get( "./lectures/data/text1.txt" ), occurrences1 ) );
 		Thread t2 = new Thread( () ->
 			countLetters( Paths.get( "./lectures/data/text2.txt" ), occurrences2 ) );
-
+		
 		t1.start();
 		t2.start();
 		try {
 			t1.join();
 			t2.join();
-					
-
-			occurrences1.forEach((key, value) -> occurrencesMerged.merge(key, value, Long::sum));
-			occurrences2.forEach((key, value) -> occurrencesMerged.merge(key, value, Long::sum));
 		} catch( InterruptedException e ) {
 			e.printStackTrace();
 		}
+		
+		occurrences1.forEach((key, value) -> occurrencesMerged.merge(key, value, Long::sum));
+		occurrences2.forEach((key, value) -> occurrencesMerged.merge(key, value, Long::sum));
 		
 		System.out.println( "e -> " + occurrencesMerged.get( 'e' ) );
 	}
@@ -40,9 +39,7 @@ public class SynchronizedMap2TModified {
 			lines.forEach( line -> {
 				for( int i = 0; i < line.length(); i++ ) {
 					final char c = line.charAt( i );
-					synchronized (occurrences) {
-						occurrences.merge( c, 1L, Long::sum );
-					}
+					occurrences.merge( c, 1L, Long::sum );
 				}
 			} );
 		} catch( IOException e ) {
