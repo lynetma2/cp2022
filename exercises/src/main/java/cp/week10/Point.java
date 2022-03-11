@@ -10,6 +10,10 @@ public class Point {
     }
     
     public boolean areEqual(){
-        return counterOne.i() == counterTwo.i();
+        synchronized(counterOne){
+            synchronized(counterTwo){
+                return counterOne.i() == counterTwo.i();
+            }
+        }
     }
 }

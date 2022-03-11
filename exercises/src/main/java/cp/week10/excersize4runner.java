@@ -42,6 +42,14 @@ public class excersize4runner {
             t3.join();
             
             System.out.println(persons.getMySet().size());
+
+            int count = 0;
+            for (Person p:persons.getMySet()) {
+                if (p.name.contains("test")){
+                    count++;
+                }
+            }
+            System.out.println("number of tests: " + count);  
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

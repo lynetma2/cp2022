@@ -8,15 +8,21 @@ public class Counter{
         this.i = i;
     }
 
-    public synchronized int i(){ //Thread-safe synchronized
-        return i;
+    public int i(){ //Thread-safe synchronized
+        synchronized(this){
+            return i;
+        }
     }
 
-    public synchronized void increment(){ //Thread-safe synchronized
-        i = i++;
+    public void increment(){ //Thread-safe synchronized
+        synchronized(this){
+            i = i++;
+        }
     }
 
-    public synchronized void decrement(){ //Thread-safe synchronized
-        i = i--;
+    public void decrement(){ //Thread-safe synchronize
+        synchronized(this){
+            i = i--;
+        }
     }
 }
