@@ -1,4 +1,4 @@
-package cp.week12;
+package cp.week11;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -8,13 +8,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.atomic.AtomicInteger;
 
-public class task8
+public class task7
 {
 	public static void main()
 	{
-		AtomicInteger totalL = new AtomicInteger(0);
+		ArrayList<Integer> totalL = new ArrayList<>();
 
 		// word -> number of times that it appears over all files
 		Map< String, Integer > occurrences = new HashMap<>();
@@ -36,11 +35,13 @@ public class task8
 		
 		filenames.stream()
 			.map( filename -> new Thread( () -> {
-				computeOccurrences( filename, occurrences, totalL );
+				int tot = computeOccurrences( filename, occurrences );
+				synchronized(totalL) {
+					totalL.add(tot);
+				}
 				latch.countDown();
 			} ) )
 			.forEach( Thread::start );
-
 		try {
 			latch.await();
 		} catch( InterruptedException e ) {
@@ -49,9 +50,14 @@ public class task8
 		
 		occurrences.forEach( (word, n) -> System.out.println( word + ": " + n ) );
 		System.out.println(totalL);
+		Integer sum = 0;
+		for (Integer local: totalL) {
+			sum = sum + local;
+		}
+		System.out.println("Total sum: " + sum);
 	}
 	
-	private static void computeOccurrences( String filename, Map< String, Integer > occurrences, AtomicInteger totalL )
+	private static int computeOccurrences( String filename, Map< String, Integer > occurrences )
 	{
 		try {
 			Files.lines( Paths.get( filename ) )
@@ -63,15 +69,17 @@ public class task8
 					}
 				} );
 
-			Files.lines( Paths.get( filename ) )
+			Long l = Files.lines( Paths.get( filename ) )
 			.flatMap( Words::extractWords )
 			.filter(s -> s.startsWith("L") )
-			.forEach(s -> {
-				totalL.getAndIncrement();
-			});
+			.count();
 
+			int numberL = l.intValue();
+
+			return numberL;
 		} catch( IOException e ) {
 			e.printStackTrace();
+			return 0;
 		}
 	}
 }
