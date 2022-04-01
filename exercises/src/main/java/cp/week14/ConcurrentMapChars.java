@@ -25,7 +25,7 @@ public class ConcurrentMapChars
 				.map( filename -> new Thread( () -> {
 					computeSet(filename, charSet);
 				} ) )
-				.forEach( thread -> threads.add(thread) );
+				.forEach( thread ->  threads.add(thread) );
         } catch ( IOException e) {
             e.printStackTrace();
         }

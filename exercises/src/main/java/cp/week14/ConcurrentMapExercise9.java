@@ -3,6 +3,7 @@ package cp.week14;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -57,9 +58,9 @@ public class ConcurrentMapExercise9
 					Character c = s.charAt(0);
                     Set<String> newSet = new HashSet<>();
                     newSet.add(s);
-					words.merge(c, newSet, (v1, v2) -> {
-                        v1.add(s);
-                        return v1;
+					words.merge(c, newSet, (oldvalue, newvalue) -> {
+                        oldvalue.add(s);
+                        return oldvalue;
                     } );
 				});
 		} catch (IOException e ) {
