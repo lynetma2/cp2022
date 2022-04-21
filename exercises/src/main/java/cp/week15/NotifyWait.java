@@ -3,6 +3,7 @@ package cp.week15;
 public class NotifyWait
 {
 	private static final Object monitor = new Object();
+	private static final Object monitor2 = new Object();
 	private static boolean t2Done = false;
 	private static boolean t1Done = false;
 	
@@ -19,8 +20,8 @@ public class NotifyWait
 				}
 			}
 			System.out.println( "Hello from t1" );
-			synchronized( monitor ) {
-				monitor.notify();
+			synchronized( monitor2 ) {
+				monitor2.notify();
 				t1Done = true;
 			}
 		} );
@@ -34,10 +35,10 @@ public class NotifyWait
 		} );
 
 		Thread t3 = new Thread( () -> {
-			synchronized( monitor ) {
+			synchronized( monitor2 ) {
 				if ( !t1Done ) {
 					try {
-						monitor.wait();
+						monitor2.wait();
 					} catch( InterruptedException e ) {
 						e.printStackTrace();
 					}
