@@ -28,7 +28,7 @@ public class Exercise14
 					.filter( Files::isRegularFile )
 					.map( filepath -> executor.submit( () -> {
 						Map<Path, FileInfo> map = new HashMap<Path, FileInfo>();
-						map.put(filepath, computeOccurrences(filepath));
+						map.put(filepath, computeFile(filepath));
 						return map;
 					}))
 					.collect( Collectors.toList() );
@@ -50,7 +50,7 @@ public class Exercise14
 		occurrences.forEach( (word, n) -> System.out.println( word + ": " + n ) );
 	}
 	
-	private static FileInfo computeOccurrences( Path textFile )
+	private static FileInfo computeFile( Path textFile )
 	{
 		FileInfo info = new FileInfo(0, 0, 0);
 
@@ -79,6 +79,7 @@ public class Exercise14
 			this.numberOfLinesL = numberOfLinesL;
 		}
 
+		@Override
 		public String toString() {
 			return "[ size: " + size + ", numberOfLines: " + numberOfLines + ", numberOfLinesL: " + numberOfLinesL + " ]";
 		}

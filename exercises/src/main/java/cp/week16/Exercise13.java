@@ -19,11 +19,12 @@ import cp.week11.Words;
 
 public class Exercise13
 {
-	public static void main(String args[])
+	public static void main()
 	{
         Map< Character, Set<String>> charSet = new ConcurrentHashMap<>();
-//		ExecutorService executor = Executors.newCachedThreadPool();
+		//ExecutorService executor = Executors.newCachedThreadPool();
 		ExecutorService executor = Executors.newFixedThreadPool( Runtime.getRuntime().availableProcessors() );
+		//ExecutorService executor = Executors.newFixedThreadPool( 4 );
 		
         try {
 			Files.walk( Paths.get("lectures/data") )
@@ -44,7 +45,7 @@ public class Exercise13
 			e.printStackTrace();
 		}
 		
-        charSet.forEach( (word, n) -> System.out.println( word + ": " + n ) );
+        //charSet.forEach( (word, n) -> System.out.println( word + ": " + n ) );
 	}
 	
 	private static void computeSet( Path filename, Map< Character, Set<String>> words) {
