@@ -52,7 +52,7 @@ public class ThreadsExercise18 {
 
 	}
 
-	public static void main(String[] args) {
+	public static void main() {
 		// path -> file info
 		Map< Path, FileInfo > filesInfo = new ConcurrentHashMap<>();
 

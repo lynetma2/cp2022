@@ -12,7 +12,7 @@ import cp.week11.Words;
 
 public class Exercise20
 {
-	public static void main(String[] args)
+	public static void main()
 	{
 		try {
 			Map<Path, FileInfo> occurrences =

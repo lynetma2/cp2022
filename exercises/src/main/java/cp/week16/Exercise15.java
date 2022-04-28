@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 
 public class Exercise15
 {
-	public static void main(String[] args)
+	public static void main()
 	{
 		// word -> number of times it appears over all files
 		Map< Path, FileInfo > occurrences = new HashMap<>();
