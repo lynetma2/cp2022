@@ -50,7 +50,7 @@ public class Exercise17
 		}
 		
 		try {
-			executor.shutdown();
+			executor.shutdownNow();
 			executor.awaitTermination( 1, TimeUnit.DAYS );
 		} catch( InterruptedException e ) {
 			e.printStackTrace();
