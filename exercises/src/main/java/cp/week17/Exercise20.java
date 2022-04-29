@@ -31,8 +31,7 @@ public class Exercise20
 					})
 					.collect( Collectors.toMap(
 						textFile -> textFile,
-						textFile -> computeFile(textFile),
-						(v1, v2) -> v1
+						textFile -> computeFile(textFile)
 					) );
 			occurrences.forEach( (word, n) -> System.out.println( word + ": " + n ) );
 		} catch( IOException e ) {

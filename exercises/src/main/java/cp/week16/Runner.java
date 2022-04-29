@@ -2,6 +2,7 @@ package cp.week16;
 import cp.week17.Exercise19;
 import cp.week17.Exercise20;
 import cp.week17.Exercise21;
+import cp.week17.testStreamPace;
 import cp.week9.Utils;
 
 public class Runner {

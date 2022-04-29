@@ -17,14 +17,14 @@ public class Exercise21
 					.filter( Files::isRegularFile )
 					.collect( Collectors.toList() )
 					.parallelStream()
-					.map( textFile -> {
+					.mapToLong( textFile -> {
 						try {
 							return Files.lines( textFile ).count();
 						} catch( IOException e ) {
-							return Stream.empty();
+							return 0l;
 						}
 					} )
-					.anyMatch( numberOfLines -> (long) numberOfLines > 10 );
+					.anyMatch( numberOfLines -> numberOfLines > 10 );
 			System.out.println( found );
 		} catch( IOException e ) {
 			e.printStackTrace();
